@@ -1,20 +1,19 @@
 'use client';
-
-import Shirt from '../../icons/tshirt.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import Sizes from '../Sizes/Sizes';
 
-export default function Card() {
+export default function Card({ data }) {
+    const { imagesId } = data;
+    const firstImageId = imagesId[0];
+
     return (
-        <div className="w-[276px] h-[423px] flex flex-col gap-2 text-center">
-            <Link href="/product"><Image src={Shirt} width={276} height={322} /></Link>
-            <p className='text-sm'>Description</p>
-            <p className='text-xs'>Rs. 1200</p>
+        <div className="w-[276px] h-[423px] flex flex-col gap-2 text-center m-4 mb-24">
+            <Link href="/product"><Image src={`http://localhost:8080/images/${firstImageId}`} width={276} height={322} alt='Product image' /></Link>
+            <p className='text-sm'>{data.heading}</p>
+            <p className='text-xs'>{`Rs. ${data.price}`}</p>
             <div className='flex justify-center gap-2'>
-                <div className='rounded-full w-[35px] h-[35px] flex justify-center items-center cursor-pointer' style={{ border: '0.5px solid black'}}>S</div>
-                <div className='rounded-full w-[35px] h-[35px] flex justify-center items-center cursor-pointer' style={{ border: '0.5px solid black'}}>M</div>
-                <div className='rounded-full w-[35px] h-[35px] flex justify-center items-center cursor-pointer' style={{ border: '0.5px solid black'}}>L</div>
-                <div className='rounded-full w-[35px] h-[35px] flex justify-center items-center cursor-pointer' style={{ border: '0.5px solid black'}}>XL</div>
+                <Sizes data={data.sizeSet} />
             </div>
         </div>
     )
