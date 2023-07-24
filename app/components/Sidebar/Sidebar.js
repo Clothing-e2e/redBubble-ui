@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Sidebar({ isOpen, close }) {
     return (
-        <div className={`top-0 left-0 w-[300px] bg-white shadow text-black h-[100vh] absolute z-40 ease-in-out duration-300 ${
+        <div className={`top-0 left-0 w-full sm:w-1/2 lg:w-1/4 bg-white shadow text-black h-[100vh] absolute z-40 ease-in-out duration-300 ${
             isOpen ? "translate-x-0 " : "-translate-x-full"
           } flex flex-col overflow-y-scroll`}>
              <div className='flex cursor-pointer justify-end p-6' onClick={close}>
