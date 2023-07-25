@@ -18,7 +18,7 @@ export default function Header() {
               <Image src={Navbar} alt="Navigation button" width={20} height={20} />
             </div>
             <div>
-            <Link href="/"><Image src={Logo} alt="App Logo"/></Link>
+            <Link href="/"><Image src={Logo} alt="App Logo" height={60} /></Link>
             </div>
             <div className='flex'>
               <div className='pr-5'><Image src={Cart} alt="Cart button" width={20} height={20} /></div>

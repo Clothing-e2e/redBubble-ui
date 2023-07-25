@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div>
               <div>
-                <Image src={Logo} alt="Logo" />
+                <Image src={Logo} alt="Logo" height={60} />
               </div>
               <ul className="mt-8 flex gap-6">
                 <li>

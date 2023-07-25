@@ -13,7 +13,7 @@ export default function Carousel({ images }) {
             </div>
             <div className="flex gap-3 overflow-x-scroll mt-1 no-scrollbar">
                 {images.map((imgId, index) => (
-                    <Image src={`http://localhost:8080/images/${images[index]}`} width={70} height={10} onClick={() => setImgIndex(index)} className={`${index === imgIndex ? 'border-black border-2' : ''}`} />
+                    <Image src={`http://localhost:8080/images/${images[index]}`} width={70} height={10} onClick={() => setImgIndex(index)} className={`cursor-pointer ${index === imgIndex ? 'border-black border-2' : ''}`} />
                 ))}
             </div>
         </div>
