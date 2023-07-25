@@ -13,7 +13,7 @@ export default function Header() {
   const [ showSidebar, setShowSidebar ] = useState(false);
     return (
       <>
-        <div className="flex flex-row w-[100vw] px-4 md:px-8 lg:px-20 py-4 justify-between sticky top-0 bg-white items-center">
+        <div className="flex flex-row w-[100vw] px-4 md:px-8 lg:px-20 py-4 justify-between sticky top-0 bg-white items-center z-100">
             <div className='cursor-pointer' onClick={() => setShowSidebar(true)}>
               <Image src={Navbar} alt="Navigation button" width={20} height={20} />
             </div>

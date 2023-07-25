@@ -1,21 +1,16 @@
 'use client';
+
 import Link from "next/link";
-import { useContext } from "react";
-import { GlobalContext } from "@/app/Context";
 
 export default function Sizes({ data }) {
-    const { setData, data: contextData } = useContext(GlobalContext);
-    const { selectedSize = '' } = contextData;
-
     return (
         <>
             { data.sizeSet.map((item, index) => {
                 const { quantity } = item;
-                const isSelected = selectedSize === item.name;
                 return (
-                    <Link href='/product' onClick={() => setData({ selectedData: data, selectedSize: item.name })}>
+                    <Link href={`/${data.id}`}>
                         <div 
-                            className={`rounded-full w-[22px] h-[22px] sm:w-[38px] sm:h-[38px] text-x sm:text-sm flex justify-center items-center border border-slate-600 ${quantity !== 0 ? 'cursor-pointer hover:bg-slate-50' : 'cursor-not-allowed'} ${isSelected ? 'bg-slate-600 text-white border-0' : ''}`}
+                            className={`rounded-full w-[23px] h-[23px] sm:w-[38px] sm:h-[38px] text-xs sm:text-sm flex justify-center items-center border border-slate-600 ${quantity !== 0 ? 'cursor-pointer hover:bg-slate-50' : 'cursor-not-allowed'}`}
                             key={index}
                         >
                             {item.name}
