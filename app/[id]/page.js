@@ -1,8 +1,4 @@
 import Breadcrumb from "../components/Breadcrumb/Breadcrumb"
-import Image from "next/image"
-import Minus from '../icons/minus.png';
-import Add from '../icons/add.png';
-import Sizes from "../components/Sizes/Sizes";
 import Carousel from "../components/Carousel/Carousel";
 import Actions from "./Actions";
 
@@ -29,14 +25,6 @@ export default async function Product({ params }) {
             <p className="text-lg sm:text-xl pt-10 pb-2 text-slate-800">{`Rs. ${data.price}`}</p>
             <p className="text-xs sm:text-sm pb-4 sm:pb-6 text-slate-700">Tax included. Shipping calculated at checkout</p>
             <hr className="h-2 w-full"/>
-            <p className="text-lg pt-4 sm:pt-6 pb-2 text-slate-700">Size</p>
-            <div className="flex flex-wrap gap-3 mt-2"><Sizes data={data} /></div>
-            <p className="text-lg pt-8 sm:pt-12 pb-2 text-slate-700">Quantity</p>
-            <div className="flex flex-wrap gap-5 mt-2 items-center">
-              <div><Image src={Minus} width={30} height={2} alt="subtract-quantity"/></div>
-              <p className="text-2xl font-sans">1</p>
-              <div><Image src={Add} width={28} height={28} alt="add-quantity"/></div>
-            </div>
             <Actions data={data} quantity={1} size="S" />
           </div>
         </div>
