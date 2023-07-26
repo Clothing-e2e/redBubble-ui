@@ -1,37 +1,22 @@
-import Close from '../../icons/Close.png';
-import Image from 'next/image';
+import Wrapper from './Wrapper';
 
 export default function Sidebar({ isOpen, close }) {
-    return (
-      <>
-      {isOpen && (
-        <div
-          className="fixed top-0 left-0 w-full h-full bg-slate-500 opacity-50 z-40"
-          onClick={close}
-        />
-      )}
-        <div className={`fixed top-0 left-0 w-full sm:w-1/2 lg:w-1/4 bg-white shadow text-black h-[100vh] z-40 ease-in-out duration-300 ${
-            isOpen ? "translate-x-0 " : "-translate-x-full"
-          } flex flex-col overflow-y-scroll`}>
-             <div className='flex cursor-pointer justify-end p-6' onClick={close}>
-                <Image src={Close} alt='Close Sidebar button' width={15} height={15} />
-             </div>
-             <div>
-                {/* <hr /> */}
-                <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex'>HOME</h1>
-                <hr />
-                <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex'>NEW ARRIVALS</h1>
-                <hr />
-                <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex'>BEST SELLERS</h1>
-                <hr />
-                <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex'>SHOP</h1>
-                <hr />
-                <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex'>TRACK ORDER</h1>
-                <hr />
-                <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex'>RETURN REQUEST</h1>
-                <hr />
-             </div>
-        </div>
-        </>
-        );
+  return (
+    <Wrapper onClose={close} isOpen={isOpen} direction="left" showLayover>
+      <div className='px-4'>
+        <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-90 flex text-sm cursor-pointer'>HOME</h1>
+        <hr />
+        <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex text-sm cursor-pointer'>NEW ARRIVALS</h1>
+        <hr />
+        <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex text-sm cursor-pointer'>BEST SELLERS</h1>
+        <hr />
+        <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex text-sm cursor-pointer'>SHOP</h1>
+        <hr />
+        <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex text-sm cursor-pointer'>TRACK ORDER</h1>
+        <hr />
+        <h1 className='p-4 pb-6 pt-6 hover:backdrop-brightness-95 flex text-sm cursor-pointer'>RETURN REQUEST</h1>
+        <hr />
+      </div>
+    </Wrapper>
+  );
 }
