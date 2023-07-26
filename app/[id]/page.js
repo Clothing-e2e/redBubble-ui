@@ -4,11 +4,11 @@ import Minus from '../icons/minus.png';
 import Add from '../icons/add.png';
 import Sizes from "../components/Sizes/Sizes";
 import Carousel from "../components/Carousel/Carousel";
+import Actions from "./Actions";
 
 export default async function Product({ params }) {
   const res = await fetch(`http://localhost:8080/style-details/${params.id}`);
   const data = await res.json();
-  console.log(data);
   const images = data.imagesId;
 
     return (
@@ -37,8 +37,7 @@ export default async function Product({ params }) {
               <p className="text-2xl font-sans">1</p>
               <div><Image src={Add} width={28} height={28} alt="add-quantity"/></div>
             </div>
-            <button className="block text-center w-[100%] sm:w-[450px] lg:w-[100%] bg-white text-black py-3 mt-16 rounded-md border hover:bg-slate-50">ADD TO CART</button>
-            <button className="block text-center w-[100%] sm:w-[450px] lg:w-[100%] bg-slate-800 text-white py-3 mt-4 rounded-md hover:bg-slate-700">CHECKOUT</button>
+            <Actions data={data} quantity={1} size="S" />
           </div>
         </div>
       </div>

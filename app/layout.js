@@ -2,7 +2,7 @@ import './globals.css'
 import { Montserrat } from 'next/font/google'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer';
-import Context from './Context';
+import Cart from './components/Cart/Cart';
 
 const montserrat = Montserrat({ variable: '--font-montserrat', subsets: ['latin'] });
 
@@ -16,7 +16,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${montserrat.variable} font-montserrat`}>
         <Header />
-        <Context>{children}</Context>
+        {children}
+        <Cart />
         <Footer />
       </body>
     </html>

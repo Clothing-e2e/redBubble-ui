@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Sizes({ data }) {
     return (
         <>
-            { data.sizeSet.map((item, index) => {
+            { data?.sizeSet?.map((item, index) => {
                 const { quantity } = item;
                 return (
                     <Link href={`/${data.id}`}>
