@@ -18,8 +18,8 @@ function Cart() {
     const subTotal = cartItems.reduce((acc, curr) => acc + curr.price, 0).toFixed(2);
 
     return (
-        <Wrapper showLayover={true} isOpen={isCartVisible} onClose={hideCart}>
-            <div className="p-2 overflow-y-scroll h-[calc(100vh-225px)]">
+        <Wrapper showLayover={true} isOpen={isCartVisible} onClose={hideCart} title="CART">
+            <div className="p-2 px-4 overflow-y-scroll h-[calc(100vh-238px)]">
                 {cartItems.map((item) => (
                     <div className="flex gap-2 py-4 hover:bg-slate-50">
                         <div><Image src={`http://localhost:8080/images/${item.imagesId[0]}`} width={100} height={100} /></div>

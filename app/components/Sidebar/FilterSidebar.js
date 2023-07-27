@@ -58,8 +58,8 @@ function FilterSidebar({ isOpen, onClose }) {
   }
 
   return (
-    <Wrapper isOpen={isOpen} onClose={onClose} showLayover>
-      <div className="px-3 overflow-y-scroll h-[calc(100vh-116px)]">
+    <Wrapper isOpen={isOpen} onClose={onClose} showLayover title="FILTERS">
+      <div className="px-3 overflow-y-scroll h-[calc(100vh-129px)]">
         <Accordian title="PRODUCT TYPE">
           <CheckboxGroup data={productTypes} onChange={(id) => handleChange(id, setProductTypes)}/>
         </Accordian >
@@ -77,8 +77,8 @@ function FilterSidebar({ isOpen, onClose }) {
         </Accordian>
       </div>
       <div className='absolute bottom-0 right-0 flex w-[100%] text-center'>
-        <div className='w-[50%] py-4 text-sm border-r bg-slate-50 hover:bg-slate-200 cursor-pointer'>CLEAR</div>
-        <div className='w-[50%] py-4 text-sm bg-slate-50 hover:bg-slate-200 cursor-pointer'>APPLY</div>
+        <div className='w-[50%] py-4 text-sm border-r bg-slate-50 hover:bg-slate-500 hover:text-white cursor-pointer'>CLEAR</div>
+        <div className='w-[50%] py-4 text-sm bg-slate-50 hover:bg-slate-500 hover:text-white cursor-pointer'>APPLY</div>
       </div>
     </Wrapper>
   )
