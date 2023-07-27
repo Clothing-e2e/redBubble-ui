@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from "react";
+import useStore from "@/app/store/store";
 
 function useOutsideAlerter(ref, cbOnOutsideClick) {
     useEffect(() => {
@@ -17,7 +18,14 @@ function useOutsideAlerter(ref, cbOnOutsideClick) {
     }, [ref]);
   }
 
+  const sortMap = {
+    'New Arrivals': 'createdOn,desc',
+    'Price (Low to High)': 'price,asc',
+    'Price (High to Low)': 'price,desc',
+  };
+
 export default function DropDown() {
+    const setSort = useStore((state) => state.setSort);
     const [isDropDownVisible, setVisible] = useState(false);
     const [selectedOption, setSelectedOption] = useState('New Arrivals');
     const wrapperRef = useRef(null);
@@ -26,6 +34,7 @@ export default function DropDown() {
     const selectNewOption = (value) => {
         setSelectedOption(value);
         setVisible(false);
+        setSort(sortMap[value]);
     };
 
     return (

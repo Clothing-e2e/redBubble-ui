@@ -4,10 +4,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Sizes from '../Sizes/Sizes';
 import { useRouter } from 'next/navigation'
+import utils from '@/app/utils/utils';
+
+const { ensureArray, ensureObject } = utils;
 
 export default function Card({ data }) {
-    const { imagesId } = data;
-    const firstImageId = imagesId[0];
+    const { imagesId } = ensureObject(data);
+    const firstImageId = ensureArray(imagesId)[0];
     const router = useRouter();
 
     return (
