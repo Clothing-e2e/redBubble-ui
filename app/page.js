@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="w-[100vw] snap-mandatory snap-y">
+    <div className="w-[100vw]">
       <Link href={`/all`}>
        <Image src={Banner} alt="Homepage banner" />
       </Link>

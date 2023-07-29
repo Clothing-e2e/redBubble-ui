@@ -5,7 +5,7 @@ import Image from "next/image";
 import Add from '../../icons/add.png';
 import Remove from '../../icons/minus.png';
 
-const Counter = ({ initialCount = 0, onChange = null, id = null }) => {
+const Counter = ({ initialCount = 0, onChange = null, data = null }) => {
     const [count, setCount] = useState(initialCount);
 
     useEffect(() => {
@@ -14,7 +14,7 @@ const Counter = ({ initialCount = 0, onChange = null, id = null }) => {
 
     const handleIncrement = () => {
         if (onChange) {
-            onChange(id, count + 1);
+            onChange(data.id, count + 1, data.size);
             setCount((value) => value + 1);
         } else {
             setCount((value) => value + 1);
@@ -22,7 +22,7 @@ const Counter = ({ initialCount = 0, onChange = null, id = null }) => {
     };
     const handleDecrement = () => {
         if (onChange) {
-            onChange(id, count - 1);
+            onChange(data.id, count - 1, data.size);
             setCount((value) => value - 1);
         } else {
             setCount((value) => value - 1);

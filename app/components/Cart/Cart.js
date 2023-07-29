@@ -20,7 +20,6 @@ function Cart() {
     const updateCart = useStore((state) => state.updateCart);
 
     const subTotal = cartItems.reduce((acc, curr) => acc + curr.price, 0).toFixed(2);
-
     return (
         <Wrapper showLayover={true} isOpen={isCartVisible} onClose={hideCart} title="CART">
             {isArrayEmpty(cartItems) ? <div className="flex items-center w-[100%] h-[calc(100vh-77px)]"><Image src={EmptyCart} width={350} height={350} alt="Empty Cart" /></div> : (
@@ -34,7 +33,7 @@ function Cart() {
                                     <div className="text-xs pt-2 pb-0"><span className="font-medium">Color:</span>{` ${item.color}`}</div>
                                     <div className="text-xs pb-2 pt-0"><span className="font-medium">Size:</span>{` ${item.size}`}</div>
                                     <div className="flex justify-between items-center">
-                                        <Counter initialCount={Number(item.quantity)} id={item.id} onChange={updateCart} />
+                                        <Counter initialCount={Number(item.quantity)} data={item} onChange={updateCart} />
                                         <div className="text-xs font-semibold">{`Rs. ${item.price}`}</div>
                                     </div>
                                 </div>

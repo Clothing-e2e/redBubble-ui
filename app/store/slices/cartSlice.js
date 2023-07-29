@@ -2,12 +2,16 @@ import utils from "@/app/utils/utils";
 
 const { ensureArray } = utils;
 
-const removeItem = (state, id) => ({
-    cart: state.cart.filter((item) => item.id !== id)
+const removeItem = (state, id, size) => ({
+    cart: state.cart.reduce((acc, current) => {
+        if (current.id === id && current.size === size) return acc;
+        acc.push(current);
+        return acc;
+    }, [])
 });
 
-const updateItem = (state, id, quantity) => state.cart.map((item) => {
-    if (item.id === id) {
+const updateItem = (state, id, quantity, size) => state.cart.map((item) => {
+    if ((item.id === id) && (item.size === size)) {
         return { ...item, quantity };
     }
     return item;
@@ -42,11 +46,11 @@ const useCartSlice = (set) => ({
     cart: [],
     isCartVisible: false,
     addToCart: (data) => set((state) => ({ cart: checkDuplicates(state.cart, data), isCartVisible: true })),
-    removeFromCart: (id) => set((state) => removeItem(state, id)),
-    updateCart: (id, quantity) => {
-        if (quantity === 0) return set((state) => removeItem(state, id));
+    removeFromCart: (id, size) => set((state) => removeItem(state, id, size)),
+    updateCart: (id, quantity, size) => {
+        if (quantity === 0) return set((state) => removeItem(state, id, size));
         return set((state) => ({
-            cart: updateItem(state, id, quantity)
+            cart: updateItem(state, id, quantity, size)
         }))
     },
     clearCart: () => set({ cart: [] }),
