@@ -8,14 +8,14 @@ import utils from '@/app/utils/utils';
 
 const { ensureArray, ensureObject } = utils;
 
-export default function Card({ data }) {
+export default function Card({ data, category }) {
     const { imagesId } = ensureObject(data);
     const firstImageId = ensureArray(imagesId)[0];
     const router = useRouter();
 
     return (
         <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-2 text-center m-4 mb-32">
-            <Link href={`/${data.id}`}>
+            <Link href={`/${category}/${data.id}`}>
                 <Image src={`http://localhost:8080/images/${firstImageId}`} width={276} height={322} alt='Product image' />
             </Link>
             <p className='text-sm'>{data.heading}</p>

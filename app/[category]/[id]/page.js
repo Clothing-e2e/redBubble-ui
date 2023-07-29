@@ -1,11 +1,13 @@
-import Breadcrumb from "../components/Breadcrumb/Breadcrumb"
-import Carousel from "../components/Carousel/Carousel";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb"
+import Carousel from "../../components/Carousel/Carousel";
 import Actions from "./Actions";
-import utils from "../utils/utils";
+import utils from "../../utils/utils";
 
-const { ensureObject, ensureArray } = utils;
+const { ensureObject, ensureArray, capitalizeFirst } = utils;
 
 export default async function Product({ params }) {
+  const category = params.category;
+  const title = category === 'all' ? 'All' : `All ${capitalizeFirst(category)}`;
   const res = await fetch(`http://localhost:8080/style-details/${params.id}`);
   const data = await res.json();
   const parsedData = ensureObject(data);
@@ -17,7 +19,7 @@ export default async function Product({ params }) {
         {/* Image */}
         <div className="md:px-8 xl:px-20 flex flex-col items-center justify-center">
           <div>
-            <Breadcrumb list={[{ title: 'All Shirts', link: '/' }, { title: parsedData.heading, link: `/${parsedData.id}` }]}/>
+            <Breadcrumb list={[{ title, link: `/${category}` }, { title: parsedData.heading, link: `/${parsedData.id}` }]}/>
             <Carousel images={images} />
           </div>
         </div>

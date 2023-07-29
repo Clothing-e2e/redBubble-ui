@@ -25,14 +25,14 @@ function useOutsideAlerter(ref, cbOnOutsideClick) {
   };
 
 export default function DropDown() {
+    const [value, onChange] = useState('New Arrivals');
     const setSort = useStore((state) => state.setSort);
     const [isDropDownVisible, setVisible] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('New Arrivals');
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef, setVisible);
 
     const selectNewOption = (value) => {
-        setSelectedOption(value);
+        onChange(value);
         setVisible(false);
         setSort(sortMap[value]);
     };
@@ -40,7 +40,7 @@ export default function DropDown() {
     return (
         <div className="relative" ref={wrapperRef}>
             <button className="absolute left-0 top-0 border border-[#a39f9f] px-0 py-1.5 text-sm z-10 bg-white w-[200px] rounded-3xl" onClick={() => setVisible((value) => !value)}>
-                SORT : {<span className="text-xs">{selectedOption}</span>}
+                SORT : {<span className="text-xs">{value}</span>}
             </button>
             {
                 isDropDownVisible && (

@@ -9,6 +9,7 @@ const useFilterSlice = (set) => ({
     setFilters: (value) => set({ filters: value }),
     clearFilters: () => set({ filters: defaultFilters }),
     setCategory: (category) => set((state) => ({ filters: { ...state, category } })),
+    clearAllFilters: () => set({ filters: {}, sort: 'createdOn,asc' })
 });
 
 export default useFilterSlice;

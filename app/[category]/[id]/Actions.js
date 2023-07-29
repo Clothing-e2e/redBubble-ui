@@ -1,10 +1,10 @@
 'use client';
 
-import useStore from "../store/store";
+import useStore from "../../store/store";
 import Image from "next/image"
-import Minus from '../icons/minus.png';
-import Add from '../icons/add.png';
-import Sizes from "../components/Sizes/Sizes";
+import Minus from '../../icons/minus.png';
+import Add from '../../icons/add.png';
+import Sizes from "../../components/Sizes/Sizes";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 

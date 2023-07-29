@@ -23,7 +23,7 @@ export default function Header() {
               <Image src={Navbar} alt="Navigation button" width={20} height={20} />
             </div>
             <div>
-            <Link href="/"><Image src={Logo} alt="App Logo" height={60} /></Link>
+            <Link href="/"><Image src={Logo} alt="App Logo" className="h-[40px] w-[55px] sm:h-[60px] sm:w-[82px]" /></Link>
             </div>
             <div className='flex'>
               <div className='mr-5 cursor-pointer relative' onClick={showCart}>

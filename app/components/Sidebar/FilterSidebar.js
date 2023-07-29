@@ -4,14 +4,18 @@ import { useState } from "react";
 import Wrapper from "./Wrapper";
 import Accordian from "../Accordian/Accordian";
 import CheckboxGroup from "../Checkbox/CheckboxGroup";
+import useStore from "@/app/store/store";
 
 function FilterSidebar({ isOpen, onClose }) {
+  const setFilters = useStore((state) => state.setFilters);
+  const clearFilters = useStore((state) => state.clearFilters);
+
   const [productTypes, setProductTypes] = useState([
-    { id: 1, checked: false, name: 'T-shirts', value: 'tshirts' },
-    { id: 2, checked: false, name: 'Shirts', value: 'shirts' },
+    { id: 1, checked: false, name: 'T-shirts', value: 'tshirt' },
+    { id: 2, checked: false, name: 'Shirts', value: 'shirt' },
     { id: 3, checked: false, name: 'Jeans', value: 'jeans' },
-    { id: 4, checked: false, name: 'Sweaters', value: 'sweaters' },
-    { id: 5, checked: false, name: 'Pants', value: 'pants' },
+    { id: 4, checked: false, name: 'Sweaters', value: 'sweater' },
+    { id: 5, checked: false, name: 'Pants', value: 'pant' },
   ]);
 
   const [colors, setColors] = useState([
@@ -37,10 +41,10 @@ function FilterSidebar({ isOpen, onClose }) {
   ]);
 
   const [price, setPrice] = useState([
-    { id: 1, checked: false, name: 'Rs. 199 to Rs. 2000', value: { min: 199, max: 2000 } },
-    { id: 2, checked: false, name: 'Rs. 2000 to Rs. 5000', value: { min: 2000, max: 5000 } },
-    { id: 3, checked: false, name: 'Rs. 5000 to Rs. 10000', value: { min: 5000, max: 10000 } },
-    { id: 4, checked: false, name: 'Rs. 10000+', value: { min: 10000, max: 100000 } },
+    { id: 1, checked: false, name: 'Rs. 199 to Rs. 2000', value: [199, 2000] },
+    { id: 2, checked: false, name: 'Rs. 2000 to Rs. 5000', value: [2000, 5000] },
+    { id: 3, checked: false, name: 'Rs. 5000 to Rs. 10000', value: [5000, 10000] },
+    { id: 4, checked: false, name: 'Rs. 10000+', value: [10000, 100000] },
   ]);
 
   const handleChange = (id, setMethod) => {
@@ -55,6 +59,31 @@ function FilterSidebar({ isOpen, onClose }) {
         return item;
       })
     })
+  }
+
+  const filterValues = (list) => {
+    return list.filter((item) => item.checked).map((item) => item.value);
+  } 
+
+  const applyFilters = () => {
+    console.log('aaa here');
+    const result = {
+      category: filterValues(productTypes),
+      color: filterValues(colors),
+      size: filterValues(sizes),
+      fitType: filterValues(fittings),
+      price: filterValues(price),
+    };
+
+    console.log('aaa here', result);
+
+    setFilters(result);
+    onClose();
+  }
+
+  const clearAll = () => {
+    clearFilters();
+    onClose();
   }
 
   return (
@@ -77,8 +106,8 @@ function FilterSidebar({ isOpen, onClose }) {
         </Accordian>
       </div>
       <div className='absolute bottom-0 right-0 flex w-[100%] text-center'>
-        <div className='w-[50%] py-4 text-sm border-r bg-slate-50 hover:bg-slate-500 hover:text-white cursor-pointer'>CLEAR</div>
-        <div className='w-[50%] py-4 text-sm bg-slate-50 hover:bg-slate-500 hover:text-white cursor-pointer'>APPLY</div>
+        <div className='w-[50%] py-4 text-sm border-r bg-slate-50 hover:bg-slate-500 hover:text-white cursor-pointer' onClick={clearAll}>CLEAR</div>
+        <div className='w-[50%] py-4 text-sm bg-slate-50 hover:bg-slate-500 hover:text-white cursor-pointer' onClick={applyFilters}>APPLY</div>
       </div>
     </Wrapper>
   )
