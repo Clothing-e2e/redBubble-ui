@@ -39,12 +39,12 @@ export default function DropDown() {
 
     return (
         <div className="relative" ref={wrapperRef}>
-            <button className="absolute left-0 top-0 border border-[#a39f9f] px-0 py-1.5 text-sm z-10 bg-white w-[200px] rounded-3xl" onClick={() => setVisible((value) => !value)}>
+            <button className="absolute left-0 top-0 border border-[#a39f9f] px-0 py-1.5 text-xs sm:text-sm z-10 bg-white w-[150px] sm:w-[200px] rounded-3xl" onClick={() => setVisible((value) => !value)}>
                 SORT : {<span className="text-xs">{value}</span>}
             </button>
             {
                 isDropDownVisible && (
-                    <div className="w-[200px] bg-white absolute left-0 top-7 rounded-2xl z-0 border text-xs">
+                    <div className="w-[150px] sm:w-[200px] bg-white absolute left-0 top-7 rounded-2xl z-0 border text-xs">
                         <div className="p-4 pt-6 cursor-pointer hover:bg-slate-50" onClick={() => selectNewOption('New Arrivals')}>New Arrivals</div>
                         <div className="p-4 cursor-pointer hover:bg-slate-50" onClick={() => selectNewOption('Price (Low to High)')}>Price (Low to High)</div>
                         <div className="p-4 pb-6 cursor-pointer hover:bg-slate-50" onClick={() => selectNewOption('Price (High to Low)')}>Price (High to Low)</div>

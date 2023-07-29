@@ -18,29 +18,29 @@ export default function Home() {
           <hr width="10%" className="bg-slate-500 mb-10 h-[2px]" />
         </div>
         <div className="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
-          <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-2 text-center mb-10">
+          <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-4 text-center mb-10">
               <Link href={`/shirts`}>
                   <Image src={Shirt} width={276} height={322} alt='Product image' />
               </Link>
-              <p className='text-sm'>T-Shirts</p>
+              <p className='text-sm'>Shirts</p>
           </div>
-          <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-2 text-center mb-10">
+          <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-4 text-center mb-10">
               <Link href={`/tshirts`}>
                   <Image src={TShirt} width={276} height={322} alt='Product image' />
               </Link>
-              <p className='text-sm'>Jeans</p>
+              <p className='text-sm'>T-Shirts</p>
           </div>
-          <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-2 text-center mb-10">
+          <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-4 text-center mb-10">
               <Link href={`/jeans`}>
                   <Image src={Jeans} width={276} height={322} alt='Product image' />
               </Link>
-              <p className='text-sm'>Hoodies</p>
+              <p className='text-sm'>Jeans</p>
           </div>
-          <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-2 text-center mb-10">
+          <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-4 text-center mb-10">
               <Link href={`/hoodies`}>
                   <Image src={Hoodies} width={276} height={322} alt='Product image' />
               </Link>
-              <p className='text-sm'>Shirts</p>
+              <p className='text-sm'>Hoodies</p>
           </div>
         </div>
         <div className="flex justify-center py-4 sm:py-10">

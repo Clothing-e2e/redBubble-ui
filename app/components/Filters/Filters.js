@@ -8,7 +8,7 @@ export default function Filter() {
 
     return (
         <>
-            <button className="border border-[#a39f9f] px-4 py-1 rounded-full text-sm" onClick={() => setIsOpen((value) => !value)}>FILTERS</button>
+            <button className="border border-[#a39f9f] px-4 py-1 rounded-full text-xs sm:text-sm" onClick={() => setIsOpen((value) => !value)}>FILTERS</button>
             <FilterSidebar isOpen={isOpen} onClose={() => setIsOpen(false)} />
         </>
     );
