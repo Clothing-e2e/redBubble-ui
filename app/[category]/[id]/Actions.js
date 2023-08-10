@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from "next/navigation";
 import useStore from "../../store/store";
 import Image from "next/image"
 import Minus from '../../icons/minus.png';
@@ -9,6 +10,7 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 function Actions({ data }) {
+    const router = useRouter();
     const searchParams = useSearchParams();
     const addToCart = useStore((state) => state.addToCart);
     const [count, setCount] = useState(1);
@@ -40,6 +42,10 @@ function Actions({ data }) {
         })
     }
 
+    const handleCheckout = () => {
+        router.push('/checkout');
+    }
+
     return (
         <>
             <p className="text-lg pt-4 sm:pt-6 pb-2 text-slate-700">Size</p>
@@ -60,7 +66,7 @@ function Actions({ data }) {
             </div>
             </div>
             <button className="block text-center w-[100%] sm:w-[450px] lg:w-[100%] bg-white text-black py-3 mt-16 rounded-md border hover:bg-slate-50" onClick={handleAdd}>ADD TO CART</button>
-            <button className="block text-center w-[100%] sm:w-[450px] lg:w-[100%] bg-slate-800 text-white py-3 mt-4 rounded-md hover:bg-slate-700">CHECKOUT</button>
+            <button className="block text-center w-[100%] sm:w-[450px] lg:w-[100%] bg-slate-800 text-white py-3 mt-4 rounded-md hover:bg-slate-700" onClick={handleCheckout}>CHECKOUT</button>
         </>
     )
 }

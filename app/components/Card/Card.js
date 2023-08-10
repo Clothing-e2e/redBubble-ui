@@ -21,7 +21,7 @@ export default function Card({ data, category }) {
             <p className='text-sm'>{data.heading}</p>
             <p className='text-xs'>{`Rs. ${data.price}`}</p>
             <div className='flex justify-center gap-2'>
-                <Sizes data={data} onChange={(size) => router.push(`/${data.id}?size=${size}`)} />
+                <Sizes data={data} onChange={(size) => router.push(`/${category}/${data.id}?size=${size}`)} />
             </div>
         </div>
     )

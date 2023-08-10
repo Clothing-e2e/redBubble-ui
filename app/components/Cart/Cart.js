@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from "next/navigation";
 import useStore from "../../store/store";
 import Wrapper from "../Sidebar/Wrapper";
 import Image from "next/image";
@@ -14,12 +15,18 @@ const { isArrayEmpty } = utils;
  * @returns
  */
 function Cart() {
+    const router = useRouter();
     const isCartVisible = useStore((state) => state.isCartVisible);
     const hideCart = useStore((state) => state.hideCart);
     const cartItems = useStore((state) => state.cart);
     const updateCart = useStore((state) => state.updateCart);
 
-    const subTotal = cartItems.reduce((acc, curr) => acc + curr.price, 0).toFixed(2);
+    const handleCheckout = () => {
+        router.push('/checkout');
+        hideCart();
+    }
+
+    const subTotal = cartItems.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0).toFixed(2);
     return (
         <Wrapper showLayover={true} isOpen={isCartVisible} onClose={hideCart} title="CART">
             {isArrayEmpty(cartItems) ? <div className="flex items-center w-[100%] h-[calc(100vh-77px)]"><Image src={EmptyCart} width={350} height={350} alt="Empty Cart" /></div> : (
@@ -47,7 +54,7 @@ function Cart() {
                                 <p className="text-xs">{`Rs. ${subTotal}`}</p>
                             </div>
                         </div>
-                        <div className='py-4 mx-2 my-1 text-sm bg-slate-800 hover:bg-slate-700 cursor-pointer text-white rounded-md text-center'>PROCEED TO CHECKOUT</div>
+                        <div className='py-4 mx-2 my-1 text-sm bg-slate-800 hover:bg-slate-700 cursor-pointer text-white rounded-md text-center' onClick={handleCheckout}>PROCEED TO CHECKOUT</div>
                         <div className="text-center pt-1 text-xs text-slate-500">Shipping & taxes calculated at checkout.</div>
                     </div>
                 </>

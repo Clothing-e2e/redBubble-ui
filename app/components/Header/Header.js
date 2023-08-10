@@ -30,7 +30,7 @@ export default function Header() {
                 <Image src={Cart} alt="Cart button" width={20} height={20} />
                 {!isCartEmpty && <div className='w-[18px] h-[18px] absolute bg-red-400 rounded-full -bottom-2.5 -right-2.5 text-xs text-white flex items-center justify-center font-sans'>{cartItems.length}</div>}
               </div>
-              <div><Image src={Profile} alt="User button" width={20} height={20} /></div>
+              {/* <div><Image src={Profile} alt="User button" width={20} height={20} /></div> */}
             </div>
         </div>
         <Sidebar isOpen={showSidebar} close={() => setShowSidebar(false)} />

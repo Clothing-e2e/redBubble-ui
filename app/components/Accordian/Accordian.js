@@ -4,8 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Arrow from '../../icons/arrow.png';
 
-function Accordian({ title, children, size = 'small', isNested = false }) {
-    const [isActive, setIsActive] = useState(false);
+function Accordian({ title, children, size = 'small', isNested = false, isOpen = false }) {
+    const [isActive, setIsActive] = useState(isOpen);
 
     const handleClick = () => {
         setIsActive((prev) => !prev);

@@ -15,6 +15,9 @@ module.exports = {
       fontFamily: {
         montserrat: ['var(--font-montserrat)']
       },
+      gridTemplateColumns: {
+        order: '2fr 1fr'
+      }
     },
   },
   plugins: [],
