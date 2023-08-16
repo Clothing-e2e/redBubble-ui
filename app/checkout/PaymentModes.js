@@ -28,7 +28,7 @@ const PaymentModes = () => {
                     ))}
                 </div>
             </div>
-            <button className="w-[300px] h-[50px] bg-slate-800 hover:bg-slate-700 text-white rounded-md text-center mt-8 flex justify-center items-center" onClick={() => null}>Confirm</button>
+            <button className="w-[300px] h-[50px] bg-slate-900 hover:bg-slate-800 text-white rounded-md text-center mt-8 flex justify-center items-center" onClick={() => null}>Confirm</button>
         </div>
     )
 };

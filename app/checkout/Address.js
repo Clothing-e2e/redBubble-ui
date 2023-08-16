@@ -84,7 +84,7 @@ const Address = ({ setStep, setEmail }) => {
                     ))}
                 </div>
             </div>
-            <button className="w-[300px] h-[50px] bg-slate-800 hover:bg-slate-700 text-white rounded-md text-center my-8 flex justify-center items-center" onClick={handleNext}>Continue</button>
+            <button className="w-[300px] h-[50px] bg-slate-900 hover:bg-slate-800 text-white rounded-md text-center my-8 flex justify-center items-center" onClick={handleNext}>Continue</button>
             <Modal isOpen={showModal.isOpen} onClose={handleClose} isAdd={showModal.isAdd} />
         </div>
     )
