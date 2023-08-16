@@ -1,0 +1,27 @@
+.input {
+    outline: none;
+    background: none;
+}
+
+.label {
+    position: absolute;
+    left: 1rem;
+    top: 0.7rem;
+    padding: 0 0.5rem;
+    color: #A3A3A3;
+    cursor: text;
+    transition: top 200ms ease-in,
+    left 200ms ease-in font-size 200ms ease-in;
+    background-color: #FFF;
+    z-index: -1;
+}
+
+.input:focus ~ 
+.label,
+.input:not(:placeholder-shown).input:not(:focus) ~ .label {
+    top: -0.5rem;
+    font-size: 0.8rem;
+    left: 0.8rem;
+    z-index: 2;
+    color: #000;
+}

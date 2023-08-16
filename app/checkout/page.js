@@ -17,7 +17,7 @@ export default function Checkout() {
 
     const cartItems = useStore((state) => state.cart);
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-order px-4 lg:px-20 py-8 lg:h-[calc(100vh-200px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-order px-4 lg:px-20 py-8">
             <div className="order-last lg:order-first lg:col-start-1 col-end-2">
                 <div className="flex items-center justify-center h-[69px]">
                     <div className="flex flex-col items-center">
