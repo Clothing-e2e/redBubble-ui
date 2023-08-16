@@ -6,20 +6,14 @@ import useStore from "../store/store";
 import Image from "next/image";
 import Accordian from "../components/Accordian/Accordian";
 import Tick from '../icons/tick.png';
-import Loader from '../icons/loader.png';
+import EmailOrPhoneInput from "./EmailOrPhoneInput";
+import Otp from './Otp';
+import Address from "./Address";
+import PaymentModes from "./PaymentModes";
 
 export default function Checkout() {
-    const [emailOrPhone, setEmailOrPhone] = useState('');
-
-    const handleChange = (e) => {
-        setEmailOrPhone(e.target.value);
-    }
-
-    const sendVerificationEmail = () => {
-        axios.post('http://localhost:8080/users/sendOtpById/64cd1abc2f41187f31fa262f').then((res) => {
-            console.log('res: ', res);
-        })
-    };
+    const [email, setEmail] = useState('');
+    const [step, setStep] = useState(3);
 
     const cartItems = useStore((state) => state.cart);
     return (
@@ -28,26 +22,31 @@ export default function Checkout() {
                 <div className="flex items-center justify-center h-[69px]">
                     <div className="flex flex-col items-center">
                         <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
-                            <Image src={Tick} width={30} height={30} />
+                            {step > 1 ? <Image src={Tick} width={30} height={30} /> : 1}
                         </div>
                         <p className="text-sm text-slate-800">Verify</p>
                     </div>
                     <hr className="w-[80px] sm:w-[160px] bg-slate-700 h-[2px]"/>
                     <div className="flex flex-col items-center">
-                        <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">2</div>
+                        <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
+                            {step > 3 ? <Image src={Tick} width={30} height={30} /> : 2}
+                        </div>
                         <p className="text-sm text-slate-800">Address</p>
                     </div>
                     <hr className="w-[80px] sm:w-[160px] bg-slate-700 h-[2px]"/>
                     <div className="flex flex-col items-center">
-                        <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">3</div>
+                        <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
+                            {step > 4 ? <Image src={Tick} width={30} height={30} /> : 3}
+                        </div>
                         <p className="text-sm text-slate-800">Payment</p>
                     </div>
                 </div>
-                <div className="flex items-center justify-center mt-10 lg:mt-32 rounded-t-lg flex-col">
-                    <div className="mb-10 font-medium text-sm">Enter Email or Phone Number</div>
-                    <input type="text" className="w-[300px] h-[50px] border-2 border-slate-800 pl-4 rounded-lg focus:outline-0" placeholder="Email / Phone" value={emailOrPhone} onChange={handleChange}/>
-                    <button className="w-[300px] h-[50px] bg-slate-800 hover:bg-slate-700 text-white rounded-md text-center mt-4 flex justify-center items-center" disabled={true} onClick={sendVerificationEmail}><Image src={Loader} width={25} height={25} className="animate-spin" /></button>
-                </div>
+                {{
+                    1: <EmailOrPhoneInput setEmail={setEmail} setStep={setStep} />,
+                    2: <Otp email={email} setStep={setStep} />,
+                    3: <Address email={email} setStep={setStep} />,
+                    4: <PaymentModes />
+                }[step]}
             </div>
             <div className="order-first lg:order-last lg:col-start-2 overflow-y-scroll">
                 <Accordian title="Cart Summary" size="large" isOpen>
