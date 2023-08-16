@@ -23,21 +23,21 @@ export default function Checkout() {
                         <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
                             {step > 2 ? <Image src={Tick} width={30} height={30} /> : 1}
                         </div>
-                        <p className="text-sm text-slate-800">Verify</p>
+                        <p className="text-sm text-slate-800 mt-2">Verify</p>
                     </div>
                     <hr className="w-[80px] sm:w-[160px] bg-slate-700 h-[2px]"/>
                     <div className="flex flex-col items-center">
                         <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
                             {step > 3 ? <Image src={Tick} width={30} height={30} /> : 2}
                         </div>
-                        <p className="text-sm text-slate-800">Address</p>
+                        <p className="text-sm text-slate-800 mt-2">Address</p>
                     </div>
                     <hr className="w-[80px] sm:w-[160px] bg-slate-700 h-[2px]"/>
                     <div className="flex flex-col items-center">
                         <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
                             {step > 4 ? <Image src={Tick} width={30} height={30} /> : 3}
                         </div>
-                        <p className="text-sm text-slate-800">Payment</p>
+                        <p className="text-sm text-slate-800 mt-2">Payment</p>
                     </div>
                 </div>
                 {{

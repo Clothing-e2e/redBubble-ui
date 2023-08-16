@@ -3,8 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Input from "../components/Input/Input";
-import Image from "next/image";
-import Loader from '../icons/loader.png';
+import Button from "../components/Button/Button";
 
 const EmailOrPhoneInput = ({ setStep, setEmail }) => {
     const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -28,12 +27,10 @@ const EmailOrPhoneInput = ({ setStep, setEmail }) => {
     }
 
     return (
-        <div className="flex items-center justify-center mt-10 lg:mt-32 rounded-t-lg flex-col">
+        <div className="flex items-center justify-center mt-10 lg:mt-24 rounded-t-lg flex-col">
             <div className="mb-6 font-medium text-sm">Enter Email or Phone Number</div>
             <Input value={emailOrPhone} handleChange={handleChange} placeholder="Email / Phone" width="300px" required />
-            <button className={`w-[300px] h-[50px] ${isDisabled() ? 'bg-slate-600 cursor-not-allowed' : 'bg-slate-900 hover:bg-slate-800'} text-white rounded-md text-center mt-4 flex justify-center items-center`} onClick={sendVerificationEmail}>
-                {isLoading ? <Image src={Loader} width={30} height={30} alt="Loader" className="animate-spin" /> :  'Continue'}
-            </button>
+            <Button text="Continue" onClick={sendVerificationEmail} isLoading={isLoading} isDisabled={isDisabled()} />
         </div>
     )
 };
