@@ -30,8 +30,7 @@ const Address = ({ setStep, setEmail }) => {
             isSelected: false,
         },
     ]);
-    const [showEdit, setShowEdit] = useState(false);
-
+    const [showModal, setShowModal] = useState({ isOpen: false, isAdd: false });
     const handleNext = () => {
         setStep(4);
     }
@@ -53,13 +52,25 @@ const Address = ({ setStep, setEmail }) => {
 
     const handleEdit = (e) => {
         e.stopPropagation();
-        setShowEdit(true);
+        setShowModal({ isOpen: true, isAdd: false });
+    };
+
+    const handleAdd = (e) => {
+        e.stopPropagation();
+        setShowModal({ isOpen: true, isAdd: true });
+    };
+
+    const handleClose = () => {
+        setShowModal({ isOpen: false, isAdd: false });
     };
 
     return (
         <div className="mt-10 flex flex-col items-center">
             <div className="w-[330px] sm:w-[500px]">
-                <p>Payment Mode</p>
+                <div className="flex justify-between items-center">
+                    <span>Shipping Address</span>
+                    <button className="bg-slate-800 hover:bg-slate-700 text-white rounded-full text-center flex justify-center items-center text-xs py-1 px-2" onClick={handleAdd}>Add New</button>
+                </div>
                 <div className="max-h-[340px] overflow-y-scroll">
                     {addresses.map((item, index) => (
                         <div className={`${item.isSelected ? 'border-black border-2' : 'border-slate-300 border'} p-2 rounded-lg mt-4 cursor-pointer`} onClick={() => updateAddressSelection(index)}>
@@ -74,7 +85,7 @@ const Address = ({ setStep, setEmail }) => {
                 </div>
             </div>
             <button className="w-[300px] h-[50px] bg-slate-800 hover:bg-slate-700 text-white rounded-md text-center my-8 flex justify-center items-center" onClick={handleNext}>Continue</button>
-            <Modal isOpen={showEdit} onClose={() => setShowEdit(false)} />
+            <Modal isOpen={showModal.isOpen} onClose={handleClose} isAdd={showModal.isAdd} />
         </div>
     )
 };

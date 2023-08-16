@@ -13,16 +13,16 @@ import PaymentModes from "./PaymentModes";
 
 export default function Checkout() {
     const [email, setEmail] = useState('');
-    const [step, setStep] = useState(3);
+    const [step, setStep] = useState(1);
 
     const cartItems = useStore((state) => state.cart);
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-order px-4 lg:px-20 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-order px-4 lg:px-20 py-8 mb-24">
             <div className="order-last lg:order-first lg:col-start-1 col-end-2">
                 <div className="flex items-center justify-center h-[69px]">
                     <div className="flex flex-col items-center">
                         <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
-                            {step > 1 ? <Image src={Tick} width={30} height={30} /> : 1}
+                            {step > 2 ? <Image src={Tick} width={30} height={30} /> : 1}
                         </div>
                         <p className="text-sm text-slate-800">Verify</p>
                     </div>

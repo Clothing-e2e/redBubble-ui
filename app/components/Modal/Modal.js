@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Input from '../Input/Input';
 
-const Modal = ({ isOpen, onClose }) => {
+const Modal = ({ isOpen, onClose, isAdd }) => {
   return (
     <>
       {isOpen && (
@@ -41,7 +41,9 @@ const Modal = ({ isOpen, onClose }) => {
                 <Input placeholder="Email" width="100%" required />
               </div>
               <div>
-                <button className="w-[100%] h-[50px] bg-slate-800 hover:bg-slate-700 text-white rounded-md text-center mt-8 flex justify-center items-center" onClick={() => null}>Edit Address</button>
+                <button className="w-[100%] h-[50px] bg-slate-800 hover:bg-slate-700 text-white rounded-md text-center mt-8 flex justify-center items-center" onClick={() => null}>
+                  {isAdd ? 'Add Address' : 'Edit Address'}
+                </button>
               </div>
             </div>
           </div>
