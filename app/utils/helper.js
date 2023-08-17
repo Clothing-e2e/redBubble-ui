@@ -3,8 +3,9 @@
  * @param {boolean} display boolean to hide / show background body scroll on overlay
  */
 const updateBgScroll = (display = true) => {
-    const style = display ? 'auto' : 'hidden';
-    document.querySelector("body").style.overflow = style;
-}
+  const style = display ? 'auto' : 'hidden';
+  document.querySelector('body').style.overflow = style;
+};
 
-export default { updateBgScroll };
+const helpers = { updateBgScroll };
+export default helpers;

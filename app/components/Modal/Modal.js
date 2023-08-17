@@ -12,7 +12,9 @@ const Modal = ({ isOpen, onClose, isAdd }) => {
           <div className="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
             <div className="modal-content py-4 text-left px-6">
               <div className="modal-header flex justify-between items-center pb-3">
-                <p className="text-xs text-red-400">Fields marked in * are mandatory</p>
+                <p className="text-xs text-red-400">
+                  Fields marked in * are mandatory
+                </p>
                 <button
                   onClick={onClose}
                   className="modal-close cursor-pointer z-50"
@@ -24,16 +26,14 @@ const Modal = ({ isOpen, onClose, isAdd }) => {
                     height="15"
                     viewBox="0 0 18 18"
                   >
-                    <path
-                      d="M18 1.5l-1.5-1.5-7.5 7.5-7.5-7.5-1.5 1.5 7.5 7.5-7.5 7.5 1.5 1.5 7.5-7.5 7.5 7.5 1.5-1.5-7.5-7.5z"
-                    />
+                    <path d="M18 1.5l-1.5-1.5-7.5 7.5-7.5-7.5-1.5 1.5 7.5 7.5-7.5 7.5 1.5 1.5 7.5-7.5 7.5 7.5 1.5-1.5-7.5-7.5z" />
                   </svg>
                 </button>
               </div>
               <div className="modal-body">
                 <Input placeholder="Full Name" width="100%" required />
                 <Input placeholder="Address" width="100%" required />
-                <div className='flex justify-between gap-4'>
+                <div className="flex justify-between gap-4">
                   <Input placeholder="City" width="100%" required />
                   <Input placeholder="State" width="100%" required />
                 </div>
@@ -41,7 +41,10 @@ const Modal = ({ isOpen, onClose, isAdd }) => {
                 <Input placeholder="Email" width="100%" required />
               </div>
               <div>
-                <button className="w-[100%] h-[50px] bg-slate-800 hover:bg-slate-700 text-white rounded-md text-center mt-8 flex justify-center items-center" onClick={() => null}>
+                <button
+                  className="w-[100%] h-[50px] bg-slate-800 hover:bg-slate-700 text-white rounded-md text-center mt-8 flex justify-center items-center"
+                  onClick={() => null}
+                >
                   {isAdd ? 'Add Address' : 'Edit Address'}
                 </button>
               </div>

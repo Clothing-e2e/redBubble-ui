@@ -1,6 +1,6 @@
-import DropDown from "../components/DropDown/DropDown";
-import Filter from "../components/Filters/Filters";
-import Content from "./Content";
+import DropDown from '../components/DropDown/DropDown';
+import Filter from '../components/Filters/Filters';
+import Content from './Content';
 
 export default function Category({ params }) {
   return (
@@ -11,5 +11,5 @@ export default function Category({ params }) {
       </div>
       <Content category={params.category} />
     </div>
-  )
+  );
 }

@@ -1,10 +1,10 @@
 import { create } from 'zustand';
-import useCartSlice from "./slices/cartSlice";
-import useFilterSlice from './slices/filterSlice';
+import cartSlice from './slices/cartSlice';
+import filterSlice from './slices/filterSlice';
 
 const store = (...params) => ({
-    ...useCartSlice(...params),
-    ...useFilterSlice(...params),
+  ...cartSlice(...params),
+  ...filterSlice(...params),
 });
 
 const useStore = create(store);
