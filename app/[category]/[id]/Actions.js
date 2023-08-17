@@ -13,6 +13,7 @@ function Actions({ data }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const addToCart = useStore((state) => state.addToCart);
+  const addAndCheckout = useStore((state) => state.addAndCheckout);
   const [count, setCount] = useState(1);
   const [size, setSize] = useState(
     searchParams.get('size') || data.sizeSet[0].name,
@@ -45,6 +46,15 @@ function Actions({ data }) {
   };
 
   const handleCheckout = () => {
+    addAndCheckout({
+      id: data.id,
+      heading: data.heading,
+      imagesId: data.imagesId,
+      price: data.price,
+      color: data.color,
+      size,
+      quantity: count,
+    });
     router.push('/checkout');
   };
 

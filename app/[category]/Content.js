@@ -4,6 +4,11 @@ import axios from 'axios';
 import Card from '../components/Card/Card';
 import useStore from '../store/store';
 import { useState, useEffect } from 'react';
+import utils from '../utils/utils';
+import Button from '../components/Button/Button';
+import { useRouter } from 'next/navigation';
+
+const { isArrayEmpty } = utils;
 
 const CATEGORY = {
   tshirts: 'tshirt',
@@ -13,6 +18,7 @@ const CATEGORY = {
 };
 
 export default function Content({ category }) {
+  const router = useRouter();
   const [pageData, setPageData] = useState({ content: [] });
   const [isLoading, setIsLoading] = useState(true);
   const filters = useStore((state) => state.filters);
@@ -65,7 +71,18 @@ export default function Content({ category }) {
       </div>
     );
 
-  return (
+  return isArrayEmpty(pageData.content) ? (
+    <div className="flex items-center justify-center h-[calc(100vh-154px)] flex-col px-4">
+      <div className="flex flex-col items-center justify-center text-center">
+        <h1 className="text-3xl md:text-5xl mb-4">No Items Found!</h1>
+        <h1 className="text-sm md:text-md mb-8">
+          We could not find any products for the selected filters. Please try
+          changing the filters or browse all products.
+        </h1>
+      </div>
+      <Button text="Browse all products" onClick={() => router.push('/all')} />
+    </div>
+  ) : (
     <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center">
       {pageData.content.map((item, index) => (
         <Card data={item} key={index} category={category} />

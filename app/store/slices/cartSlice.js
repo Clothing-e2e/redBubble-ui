@@ -61,6 +61,10 @@ const cartSlice = (set) => ({
   clearCart: () => set({ cart: [] }),
   showCart: () => set({ isCartVisible: true }),
   hideCart: () => set({ isCartVisible: false }),
+  addAndCheckout: (data) =>
+    set((state) => ({
+      cart: checkDuplicates(state.cart, data),
+    })),
 });
 
 export default cartSlice;

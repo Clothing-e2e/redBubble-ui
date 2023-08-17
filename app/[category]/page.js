@@ -5,7 +5,7 @@ import Content from './Content';
 export default function Category({ params }) {
   return (
     <div className="px-4 md:px-8 lg:px-20 flex flex-col">
-      <div className="gap-3 px-3 sm:px-5 sticky top-20 bg-white w-full py-4 flex justify-between">
+      <div className="gap-3 px-3 sm:px-5 sticky top-16 sm:top-20 bg-white w-full py-4 flex justify-between">
         <DropDown />
         <Filter />
       </div>
