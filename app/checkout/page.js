@@ -19,6 +19,7 @@ export default function Checkout() {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [step, setStep] = useState(1);
+  const [userData, setUserData] = useState(null);
 
   const cartItems = useStore((state) => state.cart);
   if (isArrayEmpty(cartItems))
@@ -44,7 +45,14 @@ export default function Checkout() {
           <div className="flex flex-col items-center">
             <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
               {step > 2 ? (
-                <Image src={Tick} width={30} height={30} alt="Verified tick" />
+                <Image
+                  src={Tick}
+                  width={30}
+                  height={30}
+                  alt="Verified tick"
+                  className="cursor-pointer"
+                  onClick={() => setStep(1)}
+                />
               ) : (
                 1
               )}
@@ -55,7 +63,14 @@ export default function Checkout() {
           <div className="flex flex-col items-center">
             <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
               {step > 3 ? (
-                <Image src={Tick} width={30} height={30} alt="Verified tick" />
+                <Image
+                  src={Tick}
+                  width={30}
+                  height={30}
+                  alt="Verified tick"
+                  className="cursor-pointer"
+                  onClick={() => setStep(3)}
+                />
               ) : (
                 2
               )}
@@ -66,7 +81,14 @@ export default function Checkout() {
           <div className="flex flex-col items-center">
             <div className="rounded-full border border-slate-800 w-[30px] h-[30px] flex items-center justify-center mr-2">
               {step > 4 ? (
-                <Image src={Tick} width={30} height={30} alt="Verified tick" />
+                <Image
+                  src={Tick}
+                  width={30}
+                  height={30}
+                  alt="Verified tick"
+                  className="cursor-pointer"
+                  onClick={() => setStep(4)}
+                />
               ) : (
                 3
               )}
@@ -77,8 +99,10 @@ export default function Checkout() {
         {
           {
             1: <EmailOrPhoneInput setEmail={setEmail} setStep={setStep} />,
-            2: <Otp email={email} setStep={setStep} />,
-            3: <Address email={email} setStep={setStep} />,
+            2: (
+              <Otp email={email} setStep={setStep} setUserData={setUserData} />
+            ),
+            3: <Address userData={userData} setStep={setStep} />,
             4: <PaymentModes />,
           }[step]
         }

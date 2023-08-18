@@ -3,33 +3,9 @@
 import { useState } from 'react';
 import Modal from '../components/Modal/Modal';
 
-const Address = ({ setStep, setEmail }) => {
-  const [addresses, setAddresses] = useState([
-    {
-      name: 'Riya Savant',
-      email: 'riya.dsav@gmail.com',
-      address: 'Bangalore, Karnataka, 560078',
-      isSelected: true,
-    },
-    {
-      name: 'Riya Savant',
-      email: 'riya.dsav@gmail.com',
-      address: 'Bangalore, Karnataka, 560078',
-      isSelected: false,
-    },
-    {
-      name: 'Riya Savant',
-      email: 'riya.dsav@gmail.com',
-      address: 'Bangalore, Karnataka, 560078',
-      isSelected: false,
-    },
-    {
-      name: 'Riya Savant',
-      email: 'riya.dsav@gmail.com',
-      address: 'Bangalore, Karnataka, 560078',
-      isSelected: false,
-    },
-  ]);
+const Address = ({ setStep, userData }) => {
+  const [addresses, setAddresses] = useState(userData?.addresses || []);
+  const [modalData, setModalData] = useState({});
   const [showModal, setShowModal] = useState({ isOpen: false, isAdd: false });
   const handleNext = () => {
     setStep(4);
@@ -52,19 +28,23 @@ const Address = ({ setStep, setEmail }) => {
     );
   };
 
-  const handleEdit = (e) => {
+  const handleEdit = (e, address) => {
     e.stopPropagation();
     setShowModal({ isOpen: true, isAdd: false });
+    setModalData(address);
   };
 
   const handleAdd = (e) => {
     e.stopPropagation();
     setShowModal({ isOpen: true, isAdd: true });
+    setModalData({});
   };
 
   const handleClose = () => {
     setShowModal({ isOpen: false, isAdd: false });
   };
+
+  const handleUpdateData = () => {};
 
   return (
     <div className="mt-10 flex flex-col items-center">
@@ -90,15 +70,15 @@ const Address = ({ setStep, setEmail }) => {
               key={index}
             >
               <div className="flex justify-between items-center">
-                <p className="font-semibold">{item.name}</p>
+                <p className="font-semibold">{item.name || 'Test Name'}</p>
                 <button
                   className="text-xs mr-2 underline underline-offset-2"
-                  onClick={handleEdit}
+                  onClick={(e) => handleEdit(e, item)}
                 >
                   Edit
                 </button>
               </div>
-              <p className="text-sm my-2">{item.address}</p>
+              <p className="text-sm my-2">{`${item.houseNumber}, ${item.city}, ${item.state}, ${item.pinCode}`}</p>
               <p className="text-xs text-slate-600">{item.email}</p>
             </div>
           ))}
@@ -114,6 +94,8 @@ const Address = ({ setStep, setEmail }) => {
         isOpen={showModal.isOpen}
         onClose={handleClose}
         isAdd={showModal.isAdd}
+        modalData={modalData}
+        updateData={handleUpdateData}
       />
     </div>
   );

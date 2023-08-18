@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Input from '../Input/Input';
 
-const Modal = ({ isOpen, onClose, isAdd }) => {
+const Modal = ({ isOpen, onClose, isAdd, modalData }) => {
   return (
     <>
       {isOpen && (
@@ -31,14 +31,44 @@ const Modal = ({ isOpen, onClose, isAdd }) => {
                 </button>
               </div>
               <div className="modal-body">
-                <Input placeholder="Full Name" width="100%" required />
-                <Input placeholder="Address" width="100%" required />
+                <Input
+                  placeholder="Full Name"
+                  width="100%"
+                  required
+                  value={modalData?.name || ''}
+                />
+                <Input
+                  placeholder="Address"
+                  width="100%"
+                  required
+                  value={modalData?.houseNumber || ''}
+                />
                 <div className="flex justify-between gap-4">
-                  <Input placeholder="City" width="100%" required />
-                  <Input placeholder="State" width="100%" required />
+                  <Input
+                    placeholder="City"
+                    width="100%"
+                    required
+                    value={modalData?.city || ''}
+                  />
+                  <Input
+                    placeholder="State"
+                    width="100%"
+                    required
+                    value={modalData?.state || ''}
+                  />
                 </div>
-                <Input placeholder="Pincode" width="100%" required />
-                <Input placeholder="Email" width="100%" required />
+                <Input
+                  placeholder="Pincode"
+                  width="100%"
+                  required
+                  value={modalData?.pinCode || ''}
+                />
+                <Input
+                  placeholder="Email"
+                  width="100%"
+                  required
+                  value={modalData?.email || ''}
+                />
               </div>
               <div>
                 <button
