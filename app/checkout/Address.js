@@ -3,8 +3,17 @@
 import { useState } from 'react';
 import Modal from '../components/Modal/Modal';
 
+const addSelectedToAddress = (addresses) => {
+  return addresses.map((item, index) => ({
+    ...item,
+    isSelected: index === 0,
+  }));
+};
+
 const Address = ({ setStep, userData }) => {
-  const [addresses, setAddresses] = useState(userData?.addresses || []);
+  const [addresses, setAddresses] = useState(
+    addSelectedToAddress(userData?.addresses || []),
+  );
   const [modalData, setModalData] = useState({});
   const [showModal, setShowModal] = useState({ isOpen: false, isAdd: false });
   const handleNext = () => {
