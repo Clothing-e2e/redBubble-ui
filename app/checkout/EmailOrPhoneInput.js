@@ -16,7 +16,7 @@ const EmailOrPhoneInput = ({ setStep, setEmail }) => {
   const sendVerificationEmail = () => {
     setIsLoading(true);
     axios
-      .post(`http://localhost:8080/users/sendOtpByEmail/${emailOrPhone}`)
+      .post(`http://62.72.30.200:8080/users/sendOtpByEmail/${emailOrPhone}`)
       .then(() => {
         setIsLoading(false);
         setStep(2);
