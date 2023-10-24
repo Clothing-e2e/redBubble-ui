@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: 'RedBubble',
+  title: 'Mynstars',
   description: 'Clothing brand',
 };
 

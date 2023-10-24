@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Logo from '../../icons/logo.png';
+import Logo from '../../icons/logo.jpg';
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div>
-              <Image src={Logo} alt="Logo" height={60} />
+              <Image src={Logo} alt="Logo" height={80} />
             </div>
             <ul className="mt-8 flex gap-6">
               <li>

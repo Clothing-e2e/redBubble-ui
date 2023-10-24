@@ -4,9 +4,8 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Navbar from '../../icons/navbar.png';
 import Cart from '../../icons/shop.png';
-import Profile from '../../icons/profile.png';
 import Sidebar from '../Sidebar/Sidebar';
-import Logo from '../../icons/logo.png';
+import Logo from '../../icons/logo.jpg';
 import Link from 'next/link';
 import useStore from '@/app/store/store';
 
@@ -27,7 +26,7 @@ export default function Header() {
             <Image
               src={Logo}
               alt="App Logo"
-              className="h-[40px] w-[55px] sm:h-[60px] sm:w-[82px]"
+              className="h-[70px] w-[60px] sm:h-[80px] sm:w-[82px]"
             />
           </Link>
         </div>
