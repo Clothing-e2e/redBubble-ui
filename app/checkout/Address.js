@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { useState } from 'react';
 import Modal from '../components/Modal/Modal';
 
@@ -46,14 +47,47 @@ const Address = ({ setStep, userData }) => {
   const handleAdd = (e) => {
     e.stopPropagation();
     setShowModal({ isOpen: true, isAdd: true });
-    setModalData({});
+    setModalData({
+      name: '',
+      houseNumber: '',
+      pinCode: '',
+      city: '',
+      state: '',
+      email: '',
+    });
   };
 
   const handleClose = () => {
     setShowModal({ isOpen: false, isAdd: false });
   };
 
-  const handleUpdateData = () => {};
+  const handleUpdateData = (updatedData) => {
+    const payload = updatedData;
+    delete payload.isSelected;
+    axios
+      .put(
+        `http://localhost:8080/users/${userData?.id}/addresses/${payload.id}`,
+        payload,
+      )
+      .then((res) => {
+        setAddresses(addSelectedToAddress(res?.data?.addresses || []));
+        setShowModal({ isOpen: false, isAdd: false });
+      });
+  };
+
+  const handleAddData = (data) => {
+    delete data.isSelected;
+    const payload = {
+      ...userData,
+      addresses: [...userData.addresses, data],
+    };
+    axios
+      .put(`http://localhost:8080/users/${userData?.id}`, payload)
+      .then((res) => {
+        setAddresses(addSelectedToAddress(res?.data?.addresses || []));
+        setShowModal({ isOpen: false, isAdd: false });
+      });
+  };
 
   return (
     <div className="mt-10 flex flex-col items-center">
@@ -105,6 +139,7 @@ const Address = ({ setStep, userData }) => {
         isAdd={showModal.isAdd}
         modalData={modalData}
         updateData={handleUpdateData}
+        addData={handleAddData}
       />
     </div>
   );

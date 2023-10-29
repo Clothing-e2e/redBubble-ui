@@ -3,7 +3,21 @@
 import { useState } from 'react';
 import Input from '../Input/Input';
 
-const Modal = ({ isOpen, onClose, isAdd, modalData }) => {
+const Modal = ({ isOpen, onClose, isAdd, modalData, updateData, addData }) => {
+  console.log('aaa modalData', modalData);
+  const [data, setData] = useState(modalData);
+
+  const handleUpdate = (e) => {
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const onSubmit = () => {
+    isAdd ? addData(data) : updateData(data);
+  };
+
   return (
     <>
       {isOpen && (
@@ -32,48 +46,60 @@ const Modal = ({ isOpen, onClose, isAdd, modalData }) => {
               </div>
               <div className="modal-body">
                 <Input
+                  name="name"
                   placeholder="Full Name"
                   width="100%"
                   required
-                  value={modalData?.name || ''}
+                  value={data?.name || ''}
+                  handleChange={handleUpdate}
                 />
                 <Input
+                  name="houseNumber"
                   placeholder="Address"
                   width="100%"
                   required
-                  value={modalData?.houseNumber || ''}
+                  value={data?.houseNumber || ''}
+                  handleChange={handleUpdate}
                 />
                 <div className="flex justify-between gap-4">
                   <Input
+                    name="city"
                     placeholder="City"
                     width="100%"
                     required
-                    value={modalData?.city || ''}
+                    value={data?.city || ''}
+                    handleChange={handleUpdate}
                   />
                   <Input
+                    name="state"
                     placeholder="State"
                     width="100%"
                     required
-                    value={modalData?.state || ''}
+                    value={data?.state || ''}
+                    handleChange={handleUpdate}
                   />
                 </div>
                 <Input
+                  name="pinCode"
                   placeholder="Pincode"
                   width="100%"
                   required
-                  value={modalData?.pinCode || ''}
+                  value={data?.pinCode || ''}
+                  handleChange={handleUpdate}
                 />
                 <Input
+                  name="email"
                   placeholder="Email"
                   width="100%"
                   required
-                  value={modalData?.email || ''}
+                  value={data?.email || ''}
+                  handleChange={handleUpdate}
                 />
               </div>
               <div>
                 <button
                   className="w-[100%] h-[50px] bg-slate-800 hover:bg-slate-700 text-white rounded-md text-center mt-8 flex justify-center items-center"
-                  onClick={() => null}
+                  onClick={onSubmit}
                 >
                   {isAdd ? 'Add Address' : 'Edit Address'}
                 </button>

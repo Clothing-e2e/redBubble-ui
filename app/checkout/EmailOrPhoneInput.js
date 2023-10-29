@@ -13,10 +13,13 @@ const EmailOrPhoneInput = ({ setStep, setEmail }) => {
     setEmailOrPhone(e.target.value);
   };
 
+  const emailUrl = `http://localhost:8080/users/sendOtpByEmail/${emailOrPhone}`;
+  const phoneUrl = 'sendOtpByPhone/{phoneNumber}';
+
   const sendVerificationEmail = () => {
     setIsLoading(true);
     axios
-      .post(`http://localhost:8080/users/sendOtpByEmail/${emailOrPhone}`)
+      .post(`http://localhost:8080/users/sendOtpByPhone/${emailOrPhone}`)
       .then(() => {
         setIsLoading(false);
         setStep(2);

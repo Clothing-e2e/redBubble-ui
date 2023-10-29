@@ -1,6 +1,13 @@
 import './Input.css';
 
-const Input = ({ placeholder, value, handleChange, width, required }) => {
+const Input = ({
+  placeholder,
+  value,
+  handleChange,
+  width,
+  required,
+  name = '',
+}) => {
   return (
     <div className={`relative w-[${width}] h-12 mt-4`}>
       <input
@@ -9,6 +16,7 @@ const Input = ({ placeholder, value, handleChange, width, required }) => {
         value={value}
         onChange={handleChange}
         placeholder=" "
+        name={name}
       />
       <label className="label">
         {required ? `${placeholder} *` : placeholder}
