@@ -13,7 +13,7 @@ const { ensureObject } = utils;
  * @param {function} setStep - Sets next step based on verification response
  * @param {email} email - Email added in previous step
  */
-const Otp = ({ setStep, email, setUserData }) => {
+const Otp = ({ setStep, phone, setUserData }) => {
   const [otp, setOtp] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -26,7 +26,7 @@ const Otp = ({ setStep, email, setUserData }) => {
     setError(false);
     setIsLoading(true);
     axios
-      .post(`http://localhost:8080/users/${email}/verify/${otp}`)
+      .post(`http://localhost:8080/users/${phone}/verify/${otp}`)
       .then((res) => {
         const { verified } = ensureObject(res.data);
         if (verified === false) {

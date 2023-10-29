@@ -5,41 +5,36 @@ import axios from 'axios';
 import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
 
-const EmailOrPhoneInput = ({ setStep, setEmail }) => {
-  const [emailOrPhone, setEmailOrPhone] = useState('');
+const EmailOrPhoneInput = ({ setStep, setPhone }) => {
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
-    setEmailOrPhone(e.target.value);
+    setPhoneNumber(e.target.value);
   };
-
-  const emailUrl = `http://localhost:8080/users/sendOtpByEmail/${emailOrPhone}`;
-  const phoneUrl = 'sendOtpByPhone/{phoneNumber}';
 
   const sendVerificationEmail = () => {
     setIsLoading(true);
     axios
-      .post(`http://localhost:8080/users/sendOtpByPhone/${emailOrPhone}`)
+      .post(`http://localhost:8080/users/sendOtpByPhone/${phoneNumber}`)
       .then(() => {
         setIsLoading(false);
         setStep(2);
-        setEmail(emailOrPhone);
+        setPhone(phoneNumber);
       });
   };
 
   const isDisabled = () => {
-    return emailOrPhone.length === 0 || isLoading;
+    return phoneNumber.length === 0 || isLoading;
   };
 
   return (
     <div className="flex items-center justify-center mt-10 lg:mt-24 rounded-t-lg flex-col">
-      <div className="mb-6 font-medium text-sm">
-        Enter Email or Phone Number
-      </div>
+      <div className="mb-6 font-medium text-sm">Enter Phone Number</div>
       <Input
-        value={emailOrPhone}
+        value={phoneNumber}
         handleChange={handleChange}
-        placeholder="Email / Phone"
+        placeholder="Phone"
         width="300px"
         required
       />

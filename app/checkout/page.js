@@ -17,11 +17,16 @@ const { isArrayEmpty } = utils;
 
 export default function Checkout() {
   const router = useRouter();
-  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [step, setStep] = useState(1);
   const [userData, setUserData] = useState(null);
 
   const cartItems = useStore((state) => state.cart);
+
+  const totalAmount = cartItems
+    .reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+    .toFixed(2);
+
   if (isArrayEmpty(cartItems))
     return (
       <div className="flex items-center justify-center h-[calc(100vh-92px)] flex-col px-4">
@@ -98,9 +103,9 @@ export default function Checkout() {
         </div>
         {
           {
-            1: <EmailOrPhoneInput setEmail={setEmail} setStep={setStep} />,
+            1: <EmailOrPhoneInput setPhone={setPhone} setStep={setStep} />,
             2: (
-              <Otp email={email} setStep={setStep} setUserData={setUserData} />
+              <Otp phone={phone} setStep={setStep} setUserData={setUserData} />
             ),
             3: <Address userData={userData} setStep={setStep} />,
             4: <PaymentModes />,
@@ -139,7 +144,7 @@ export default function Checkout() {
           </div>
           <div className="text-sm flex justify-between pt-6">
             <h1>Subtotal</h1>
-            <h1>1999</h1>
+            <h1>{`Rs. ${totalAmount}`}</h1>
           </div>
           <div className="text-sm flex justify-between py-2">
             <h1>Shipping charges</h1>
@@ -147,7 +152,7 @@ export default function Checkout() {
           </div>
           <div className="text-sm flex justify-between my-4 py-3 border-t font-semibold">
             <h1>Total</h1>
-            <h1>1999</h1>
+            <h1>{`Rs. ${totalAmount}`}</h1>
           </div>
         </Accordian>
       </div>

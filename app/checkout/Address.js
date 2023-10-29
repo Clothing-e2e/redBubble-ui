@@ -133,14 +133,16 @@ const Address = ({ setStep, userData }) => {
       >
         Continue
       </button>
-      <Modal
-        isOpen={showModal.isOpen}
-        onClose={handleClose}
-        isAdd={showModal.isAdd}
-        modalData={modalData}
-        updateData={handleUpdateData}
-        addData={handleAddData}
-      />
+      {showModal.isOpen && (
+        <Modal
+          isOpen={showModal.isOpen}
+          onClose={handleClose}
+          isAdd={showModal.isAdd}
+          modalData={modalData}
+          updateData={handleUpdateData}
+          addData={handleAddData}
+        />
+      )}
     </div>
   );
 };
