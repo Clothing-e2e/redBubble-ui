@@ -5,6 +5,7 @@ import TShirt from './icons/tshirt.webp';
 import Jeans from './icons/jeans.webp';
 import Hoodies from './icons/hoodies.webp';
 import Link from 'next/link';
+import './globals.css';
 
 export default function Home() {
   return (

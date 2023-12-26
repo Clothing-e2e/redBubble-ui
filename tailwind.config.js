@@ -2,8 +2,13 @@
 module.exports = {
   important: true,
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
+    './app/**/*.{js,ts,jsx,tsx,html}',
     './app/components/**/*.{js,ts,jsx,tsx}',
+    './app/store/**/*.{js,ts,jsx,tsx}',
+    './app/order/**/*.{js,ts,jsx,tsx}',
+    './app/checkout/**/*.{js,ts,jsx,tsx}',
+    './app/page.js',
+    './app/layout.js',
   ],
   theme: {
     extend: {
