@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  important: true,
+  content: ['./pages/**/*.js', './components/**/*.js', './app/**/*.js'],
   theme: {
     extend: {
       backgroundImage: {
@@ -13,12 +10,12 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        montserrat: ['var(--font-montserrat)']
+        montserrat: ['var(--font-montserrat)'],
       },
       gridTemplateColumns: {
-        order: '2fr 1fr'
-      }
+        order: '2fr 1fr',
+      },
     },
   },
   plugins: [],
-}
+};
