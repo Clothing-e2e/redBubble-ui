@@ -6,6 +6,7 @@ import Modal from '../components/Modal/Modal';
 import { useRouter } from 'next/navigation';
 import utils from '../utils/utils';
 import Loader from '../components/Loader';
+import useStore from '../store/store';
 
 const { ensureArray } = utils;
 const addSelectedToAddress = (addresses) => {
@@ -16,6 +17,7 @@ const addSelectedToAddress = (addresses) => {
 };
 
 const Address = ({ userData }) => {
+  const clearCart = useStore((state) => state.clearCart);
   const [addresses, setAddresses] = useState(
     addSelectedToAddress(userData?.addresses || []),
   );
@@ -44,7 +46,7 @@ const Address = ({ userData }) => {
     const order = data.data;
     const options = {
       key: key,
-      name: userData.username,
+      name: userData.email,
       currency: order.currency,
       amount: order.amount,
       order_id: order.pgOrderId,
@@ -64,6 +66,7 @@ const Address = ({ userData }) => {
         const paymentRes = res.data;
 
         if (paymentRes.error === null) {
+          clearCart();
           router.push(`/order?error=false&orderId=${paymentRes.orderId}`);
         } else {
           router.push(`/order?error=true`);
