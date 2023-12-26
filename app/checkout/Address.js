@@ -3,7 +3,11 @@
 import axios from 'axios';
 import { useState } from 'react';
 import Modal from '../components/Modal/Modal';
+import { useRouter } from 'next/navigation';
+import utils from '../utils/utils';
+import Loader from '../components/Loader';
 
+const { ensureArray } = utils;
 const addSelectedToAddress = (addresses) => {
   return addresses.map((item, index) => ({
     ...item,
@@ -11,14 +15,64 @@ const addSelectedToAddress = (addresses) => {
   }));
 };
 
-const Address = ({ setStep, userData }) => {
+const Address = ({ userData }) => {
   const [addresses, setAddresses] = useState(
     addSelectedToAddress(userData?.addresses || []),
   );
   const [modalData, setModalData] = useState({});
   const [showModal, setShowModal] = useState({ isOpen: false, isAdd: false });
-  const handleNext = () => {
-    setStep(4);
+  const [paymentStatus, setPaymentStatus] = useState('pending');
+
+  const router = useRouter();
+
+  const makePayment = async () => {
+    const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY;
+    console.log(key);
+
+    const data = await axios.post('http://localhost:8080/orders', {
+      userId: '64c95ee9a104506d4ba06551',
+      addressId: '3dacf8c0-dfde-4bf0-a0d6-2b72e2ff240e',
+      amount: 2.0,
+      orderDetailsList: [
+        {
+          styleId: '64b5a0aaec6a046dabff5fc2',
+          quantity: 2,
+          size: 'M',
+        },
+      ],
+    });
+    const order = data.data;
+    const options = {
+      key: key,
+      name: userData.username,
+      currency: order.currency,
+      amount: order.amount,
+      order_id: order.pgOrderId,
+      description: 'Understanding RazorPay Integration',
+      handler: async function (response) {
+        setPaymentStatus('verifying');
+
+        const res = await axios.put(
+          `http://localhost:8080/orders/${order.id}`,
+          {
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_signature: response.razorpay_signature,
+          },
+        );
+
+        const paymentRes = res.data;
+
+        if (paymentRes.error === null) {
+          router.push(`/order?error=false&orderId=${paymentRes.orderId}`);
+        } else {
+          router.push(`/order?error=true`);
+        }
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
   };
 
   const updateAddressSelection = (itemIndex) => {
@@ -79,7 +133,7 @@ const Address = ({ setStep, userData }) => {
     delete data.isSelected;
     const payload = {
       ...userData,
-      addresses: [...userData.addresses, data],
+      addresses: [...ensureArray(userData.addresses), data],
     };
     axios
       .put(`http://localhost:8080/users/${userData?.id}`, payload)
@@ -127,12 +181,23 @@ const Address = ({ setStep, userData }) => {
           ))}
         </div>
       </div>
-      <button
-        className="w-[300px] h-[50px] bg-slate-900 hover:bg-slate-800 text-white rounded-md text-center my-8 flex justify-center items-center"
-        onClick={handleNext}
-      >
-        Continue
-      </button>
+      {addresses.length !== 0 && (
+        <button
+          className={`w-[300px] h-[50px] text-white rounded-md text-center my-8 flex justify-center items-center ${
+            paymentStatus === 'verifying'
+              ? 'bg-slate-600 cursor-not-allowed'
+              : 'bg-slate-900 hover:bg-slate-800'
+          }`}
+          onClick={makePayment}
+        >
+          {paymentStatus === 'verifying' && <Loader />}
+          {paymentStatus === 'verifying' ? (
+            <p className="ml-4">Verifying Payment</p>
+          ) : (
+            'Make Payment'
+          )}
+        </button>
+      )}
       {showModal.isOpen && (
         <Modal
           isOpen={showModal.isOpen}
