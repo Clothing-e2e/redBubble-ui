@@ -55,7 +55,7 @@ const Address = ({ userData }) => {
         setPaymentStatus('verifying');
 
         const res = await axios.put(
-          `http://localhost:8080/orders/${order.id}`,
+          `http://localhost:8080/api/orders/${order.id}`,
           {
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
