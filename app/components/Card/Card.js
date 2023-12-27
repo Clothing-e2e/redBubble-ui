@@ -17,7 +17,7 @@ export default function Card({ data, category }) {
     <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-2 text-center m-4 mb-32">
       <Link href={`/${category}/${data.id}`}>
         <Image
-          src={`/api/images/${firstImageId}`}
+          src={`http://localhost:8080/api/images/${firstImageId}`}
           width={276}
           height={322}
           alt="Product image"
