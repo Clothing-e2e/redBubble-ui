@@ -169,7 +169,7 @@ export default function Footer() {
         </div>
 
         <p className="text-xs text-gray-500">
-          &copy; 2023. RedBubble. All rights reserved.
+          &copy; 2023. Mynstar. All rights reserved.
         </p>
       </div>
     </footer>
