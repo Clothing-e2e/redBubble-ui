@@ -119,7 +119,7 @@ export default function Checkout() {
               <div className="flex gap-2 py-4 hover:bg-slate-50" key={index}>
                 <div>
                   <Image
-                    src={`http://localhost:8080/images/${item.imagesId[0]}`}
+                    src={`http://localhost:8080/api/images/${item.imagesId[0]}`}
                     width={60}
                     height={100}
                     alt="Product Image ̰ß"

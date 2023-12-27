@@ -31,7 +31,7 @@ const Address = ({ userData }) => {
     const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY;
     console.log(key);
 
-    const data = await axios.post('http://localhost:8080/orders', {
+    const data = await axios.post('http://localhost:8080/api/orders', {
       userId: '64c95ee9a104506d4ba06551',
       addressId: '3dacf8c0-dfde-4bf0-a0d6-2b72e2ff240e',
       amount: 2.0,
@@ -123,7 +123,7 @@ const Address = ({ userData }) => {
     delete payload.isSelected;
     axios
       .put(
-        `http://localhost:8080/users/${userData?.id}/addresses/${payload.id}`,
+        `http://localhost:8080/api/users/${userData?.id}/addresses/${payload.id}`,
         payload,
       )
       .then((res) => {
@@ -139,7 +139,7 @@ const Address = ({ userData }) => {
       addresses: [...ensureArray(userData.addresses), data],
     };
     axios
-      .put(`http://localhost:8080/users/${userData?.id}`, payload)
+      .put(`http://localhost:8080/api/users/${userData?.id}`, payload)
       .then((res) => {
         setAddresses(addSelectedToAddress(res?.data?.addresses || []));
         setShowModal({ isOpen: false, isAdd: false });

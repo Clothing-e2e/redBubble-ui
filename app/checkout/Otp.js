@@ -26,7 +26,7 @@ const Otp = ({ setStep, phone, setUserData }) => {
     setError(false);
     setIsLoading(true);
     axios
-      .post(`http://localhost:8080/users/${phone}/verify/${otp}`)
+      .post(`http://localhost:8080/api/users/${phone}/verify/${otp}`)
       .then((res) => {
         const { verified } = ensureObject(res.data);
         if (verified === false) {
