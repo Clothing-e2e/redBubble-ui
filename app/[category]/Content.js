@@ -39,7 +39,7 @@ export default function Content({ category }) {
     setIsLoading(true);
     axios
       .post(
-        `http://localhost:8080/api/style-details/getStyles?page=${page}&size=${size}&sort=${sort}`,
+        `/api/style-details/getStyles?page=${page}&size=${size}&sort=${sort}`,
         bodyData,
         { headers: { 'Content-Type': 'application/json' } },
       )

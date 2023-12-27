@@ -15,13 +15,11 @@ const EmailOrPhoneInput = ({ setStep, setPhone }) => {
 
   const sendVerificationEmail = () => {
     setIsLoading(true);
-    axios
-      .post(`http://localhost:8080/api/users/sendOtpByPhone/${phoneNumber}`)
-      .then(() => {
-        setIsLoading(false);
-        setStep(2);
-        setPhone(phoneNumber);
-      });
+    axios.post(`/api/users/sendOtpByPhone/${phoneNumber}`).then(() => {
+      setIsLoading(false);
+      setStep(2);
+      setPhone(phoneNumber);
+    });
   };
 
   const isDisabled = () => {

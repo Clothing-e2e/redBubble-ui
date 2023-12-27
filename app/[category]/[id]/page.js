@@ -8,9 +8,7 @@ const { ensureObject, ensureArray, capitalizeFirst } = utils;
 export default async function Product({ params }) {
   const category = params.category;
   const title = category === 'all' ? 'All' : `All ${capitalizeFirst(category)}`;
-  const res = await fetch(
-    `http://localhost:8080/api/style-details/${params.id}`,
-  );
+  const res = await fetch(`/api/style-details/${params.id}`);
   const data = await res.json();
   const parsedData = ensureObject(data);
   const images = ensureArray(parsedData.imagesId);

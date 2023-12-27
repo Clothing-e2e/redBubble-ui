@@ -47,7 +47,7 @@ function Cart() {
               <div className="flex gap-2 py-4 hover:bg-slate-50" key={index}>
                 <div>
                   <Image
-                    src={`http://localhost:8080/api/images/${item.imagesId[0]}`}
+                    src={`/api/images/${item.imagesId[0]}`}
                     width={100}
                     height={100}
                     alt="Product Image"
