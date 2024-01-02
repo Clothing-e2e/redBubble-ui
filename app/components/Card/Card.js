@@ -15,7 +15,7 @@ export default function Card({ data, category }) {
 
   return (
     <div className="w-[150px] h-[230px] sm:w-[276px] sm:h-[423px] flex flex-col gap-2 text-center m-4 mb-32">
-      <Link href={`/${category}/${data.id}`}>
+      <Link href={`/${category}/product?id=${data.id}`}>
         <Image
           src={`http://localhost:8080/api/images/${firstImageId}`}
           width={276}
@@ -29,7 +29,7 @@ export default function Card({ data, category }) {
         <Sizes
           data={data}
           onChange={(size) =>
-            router.push(`/${category}/${data.id}?size=${size}`)
+            router.push(`/${category}/product?size=${size}&id={${data.id}}`)
           }
         />
       </div>
