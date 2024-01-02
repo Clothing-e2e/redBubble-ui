@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import axios from 'axios';
+import axios from '../axios/api';
 import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
 
@@ -15,7 +15,7 @@ const EmailOrPhoneInput = ({ setStep, setPhone }) => {
 
   const sendVerificationEmail = () => {
     setIsLoading(true);
-    axios.post(`/api/users/sendOtpByPhone/${phoneNumber}`).then(() => {
+    axios.post(`/users/sendOtpByPhone/${phoneNumber}`).then(() => {
       setIsLoading(false);
       setStep(2);
       setPhone(phoneNumber);

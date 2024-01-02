@@ -1,6 +1,6 @@
 'use client';
 
-import axios from 'axios';
+import axios from '../axios/api';
 import { useState } from 'react';
 import Input from '../components/Input/Input';
 import utils from '../utils/utils';
@@ -26,7 +26,7 @@ const Otp = ({ setStep, phone, setUserData }) => {
     setError(false);
     setIsLoading(true);
     axios
-      .post(`/api/users/${phone}/verify/${otp}`)
+      .post(`/users/${phone}/verify/${otp}`)
       .then((res) => {
         const { verified } = ensureObject(res.data);
         if (verified === false) {

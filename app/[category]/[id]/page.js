@@ -2,14 +2,15 @@ import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';
 import Carousel from '../../components/Carousel/Carousel';
 import Actions from './Actions';
 import utils from '../../utils/utils';
+import axios from '../../axios/api';
 
 const { ensureObject, ensureArray, capitalizeFirst } = utils;
 
 export default async function Product({ params }) {
   const category = params.category;
   const title = category === 'all' ? 'All' : `All ${capitalizeFirst(category)}`;
-  const res = await fetch(`/api/style-details/${params.id}`);
-  const data = await res.json();
+  const res = await axios.get(`/style-details/${params.id}`);
+  const data = await res.data;
   const parsedData = ensureObject(data);
   const images = ensureArray(parsedData.imagesId);
 

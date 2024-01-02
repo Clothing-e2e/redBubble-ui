@@ -1,6 +1,6 @@
 'use client';
 
-import axios from 'axios';
+import axios from '../axios/api';
 import Card from '../components/Card/Card';
 import useStore from '../store/store';
 import { useState, useEffect } from 'react';
@@ -39,7 +39,7 @@ export default function Content({ category }) {
     setIsLoading(true);
     axios
       .post(
-        `/api/style-details/getStyles?page=${page}&size=${size}&sort=${sort}`,
+        `/style-details/getStyles?page=${page}&size=${size}&sort=${sort}`,
         bodyData,
         { headers: { 'Content-Type': 'application/json' } },
       )

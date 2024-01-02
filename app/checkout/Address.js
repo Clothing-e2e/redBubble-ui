@@ -1,6 +1,6 @@
 'use client';
 
-import axios from 'axios';
+import axios from '../axios/api';
 import { useState } from 'react';
 import Modal from '../components/Modal/Modal';
 import { useRouter } from 'next/navigation';
@@ -31,7 +31,7 @@ const Address = ({ userData }) => {
     const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY;
     console.log(key);
 
-    const data = await axios.post('/api/orders', {
+    const data = await axios.post('/orders', {
       userId: '64c95ee9a104506d4ba06551',
       addressId: '3dacf8c0-dfde-4bf0-a0d6-2b72e2ff240e',
       amount: 2.0,
@@ -54,7 +54,7 @@ const Address = ({ userData }) => {
       handler: async function (response) {
         setPaymentStatus('verifying');
 
-        const res = await axios.put(`/api/orders/${order.id}`, {
+        const res = await axios.put(`/orders/${order.id}`, {
           razorpay_payment_id: response.razorpay_payment_id,
           razorpay_order_id: response.razorpay_order_id,
           razorpay_signature: response.razorpay_signature,
@@ -119,7 +119,7 @@ const Address = ({ userData }) => {
     const payload = updatedData;
     delete payload.isSelected;
     axios
-      .put(`/api/users/${userData?.id}/addresses/${payload.id}`, payload)
+      .put(`/users/${userData?.id}/addresses/${payload.id}`, payload)
       .then((res) => {
         setAddresses(addSelectedToAddress(res?.data?.addresses || []));
         setShowModal({ isOpen: false, isAdd: false });
@@ -132,7 +132,7 @@ const Address = ({ userData }) => {
       ...userData,
       addresses: [...ensureArray(userData.addresses), data],
     };
-    axios.put(`/api/users/${userData?.id}`, payload).then((res) => {
+    axios.put(`/users/${userData?.id}`, payload).then((res) => {
       setAddresses(addSelectedToAddress(res?.data?.addresses || []));
       setShowModal({ isOpen: false, isAdd: false });
     });
