@@ -29,7 +29,7 @@ export default function Card({ data, category }) {
         <Sizes
           data={data}
           onChange={(size) =>
-            router.push(`/${category}/product?size=${size}&id={${data.id}}`)
+            router.push(`/${category}/product?size=${size}&id=${data.id}`)
           }
         />
       </div>
